@@ -27,7 +27,9 @@ In the second step, we move towards a more realistic front-end focused setup wit
 * Change the start script to call webpack with the config above in development mode
 
 ### Part 3 - Add Babel to the Webpack Setup
-In the third step, we add Babel to ensure we can support all syntaxes and flavors of Javascript by compiling everything into vanilla JS that all browsers can understand. This is used for example in React to transpile JSX files.
+In the third step, we add Babel to ensure we can support all syntaxes and flavors of Javascript by compiling everything into vanilla JS that all browsers can understand. This is used for example in React to transpile JSX files. 
+
+This is done in commit 64aa9e3.
 
 * Install the main Babel dependencies - `@babel/core` & `@babel/preset-env` along with a loader that plugs babel into webpack - `babel-loader`
     * `@babel/preset-env` enables use of the latest JS without micromanaging syntax transforms and browser polyfills based on the target environment.
@@ -36,6 +38,15 @@ In the third step, we add Babel to ensure we can support all syntaxes and flavor
 * Add Babel into the webpack config
     * Ensure Babel covers all JS files but excludes the node_modules folder
     * Ensure the Webpack Babel loader is used
+
+### Part 4 - React Setup
+
+#### React with Babel
+Let's configure Babel to correctly transpile React's JSX files.
+
+* Install @babel/preset-react
+* Configure `.babelrc` and add the babel preset
+* Modify webpack config to ensure `.jsx` files are run through transpiling.
 
 ## Thanks To
 

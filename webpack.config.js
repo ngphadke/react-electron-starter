@@ -8,7 +8,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(js)$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: ['babel-loader']
             }
@@ -16,7 +16,7 @@ module.exports = {
     },
     // Include all js (except the already excluded ones)
     resolve: {
-        extensions: ['*', '.js']
+        extensions: ['*', '.js', '.jsx']
     },
 
     // Bundle everything to a folder in the project named dist
