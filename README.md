@@ -43,10 +43,22 @@ This is done in commit 64aa9e3.
 
 #### React with Babel
 Let's configure Babel to correctly transpile React's JSX files.
+This step is covered in commit 9538ff2
 
 * Install @babel/preset-react
 * Configure `.babelrc` and add the babel preset
 * Modify webpack config to ensure `.jsx` files are run through transpiling.
+
+#### React with Webpack
+Let's configure React to get bundled by Webpack
+This set is covered in commit 
+
+* Install the base React dependencies - `react` and `react-dom`
+* In `index.js` implement the entry point into React
+
+
+### Hot Module Replacement in React
+Here we want the page to auto-refresh without reloading.
 
 ## Thanks To
 
