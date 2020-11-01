@@ -1,9 +1,10 @@
-const webpack = require('webpack');
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     // The entry point for the bundling. 
     // Whatever this file imports gets bundled as well.
-    entry: "./src/index.js",
+    entry: "./src/index.jsx",
 
     // Include Babel in the build process using the it's webpack loader/ 
     // Exclude the node_modules folder
@@ -29,7 +30,8 @@ module.exports = {
     },
 
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new HtmlWebpackPlugin()
     ],
 
     // Serve from the dist folder
