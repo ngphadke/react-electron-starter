@@ -1,9 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-const title =  'React with Webpack and Babel'
+import App from './App'
 
 ReactDOM.render(
-    <div>{title}</div>,
+    <App title='Hello React!!' />,
     document.getElementById('root')
 )
+
+module.hot.accept()

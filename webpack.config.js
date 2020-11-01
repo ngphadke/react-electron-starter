@@ -1,3 +1,5 @@
+const webpack = require('webpack');
+
 module.exports = {
     // The entry point for the bundling. 
     // Whatever this file imports gets bundled as well.
@@ -25,6 +27,10 @@ module.exports = {
         publicPath: '/',
         filename: 'bundle.js'
     },
+
+    plugins: [
+        new webpack.HotModuleReplacementPlugin()
+    ],
 
     // Serve from the dist folder
     devServer: {
