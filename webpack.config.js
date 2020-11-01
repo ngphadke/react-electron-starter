@@ -1,6 +1,23 @@
 module.exports = {
-    // The entry point. Whatever this file imports gets bundled as well.
+    // The entry point for the bundling. 
+    // Whatever this file imports gets bundled as well.
     entry: "./src/index.js",
+
+    // Include Babel in the build process using the it's webpack loader/ 
+    // Exclude the node_modules folder
+    module: {
+        rules: [
+            {
+                test: /\.(js)$/,
+                exclude: /node_modules/,
+                use: ['babel-loader']
+            }
+        ]
+    },
+    // Include all js (except the already excluded ones)
+    resolve: {
+        extensions: ['*', '.js']
+    },
 
     // Bundle everything to a folder in the project named dist
     output: {
