@@ -1,41 +1,44 @@
 const webpack = require('webpack')
+const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { spawn } = require('child_process')
+
+const defaultInclude = path.resolve(__dirname, 'src')
 
 module.exports = {
-    // The entry point for the bundling. 
-    // Whatever this file imports gets bundled as well.
-    entry: "./src/index.jsx",
-
-    // Include Babel in the build process using the it's webpack loader/ 
+    // Include Babel in the build process using it's webpack loader/ 
     // Exclude the node_modules folder
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
-                use: ['babel-loader']
-            }
+                test: /\.jsx?$/,
+                use: [{ loader: 'babel-loader' }],
+                include: defaultInclude
+              },
         ]
     },
-    // Include all js (except the already excluded ones)
-    resolve: {
-        extensions: ['*', '.js', '.jsx']
-    },
 
-    // Bundle everything to a folder in the project named dist
-    output: {
-        path: __dirname + '/dist',
-        publicPath: '/',
-        filename: 'bundle.js'
-    },
+    target: 'electron-renderer',
 
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new HtmlWebpackPlugin()
+        new HtmlWebpackPlugin(),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('development')
+          })
     ],
-
+    devtool: 'cheap-source-map',
     // Serve from the dist folder
     devServer: {
-        contentBase: './dist'
+        contentBase: path.resolve(__dirname, 'dist'),
+        //Set the electron . command to run before the dev server starts
+        before(){
+            spawn(
+                'electron',
+                ['.'],
+                { shell: true, env: process.env, stdio: 'inherit'}
+            )
+            .on('close', code => process.exit(0))
+            .on('error', spawnError => console.error(spawnError))
+        }
     }
 }
